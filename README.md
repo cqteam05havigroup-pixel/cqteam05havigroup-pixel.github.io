@@ -1,1 +1,0 @@
-# cqteam05havigroup-pixel.github.io
