@@ -4,22 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Drop Kho USA — AI Workflow Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080a09;--s1:#0f1210;--s2:#161a17;--s3:#1e2420;--border:#252b27;--border2:#2e3830;--orange:#ff6b35;--cyan:#00d4aa;--white:#f0f4f1;--muted:#6b8070;--faint:#2a3530;--green:#00e87a;--green-d:#00e87a18;--green-m:#00e87a44;--yellow:#f5c842;--yellow-d:#f5c84218;--red:#ff4444;--red-d:#ff444418;--display:'Syne',sans-serif;--body:'DM Sans',sans-serif;--mono:'Space Mono',monospace}
+:root{
+  --bg:#080a09;--s1:#0f1210;--s2:#161a17;--s3:#1e2420;
+  --border:#252b27;--border2:#2e3830;
+  --orange:#ff6b35;--cyan:#00d4aa;--white:#f0f4f1;--muted:#6b8070;--faint:#2a3530;
+  --green:#00e87a;--green-d:#00e87a18;--green-m:#00e87a44;
+  --yellow:#f5c842;--yellow-d:#f5c84218;
+  --red:#ff4444;--red-d:#ff444418;
+  --display:'Syne',sans-serif;
+  --body:'DM Sans',sans-serif;
+  --mono:'Space Mono',monospace
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--body);overflow-x:hidden}
+ 
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,10,9,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-logo{font-family:var(--display);font-size:18px;font-weight:800;letter-spacing:-.02em}
 .nav-logo span{color:var(--orange)}
 .nav-links{display:flex;gap:4px}
-.nav-link{padding:6px 14px;border-radius:6px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s;font-family:var(--mono);letter-spacing:.04em;border:none;background:none}
+.nav-link{
+  padding:6px 14px;border-radius:6px;
+  font-size:13px;font-family:var(--body);font-weight:500;letter-spacing:.01em;
+  color:var(--muted);cursor:pointer;transition:all .2s;border:none;background:none
+}
 .nav-link:hover,.nav-link.active{color:var(--white);background:var(--s3)}
+ 
+/* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 2rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 60% 40%,rgba(255,107,53,.07),transparent),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(0,212,170,.05),transparent);pointer-events:none}
 .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.25;pointer-events:none}
-.hero-tag{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
+.hero-tag{
+  font-family:var(--body);font-size:12px;font-weight:500;
+  color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:1.5rem;display:flex;align-items:center;gap:8px
+}
 .hero-tag::before{content:'';width:32px;height:1px;background:var(--cyan)}
 .hero h1{font-family:var(--display);font-size:clamp(52px,9vw,110px);font-weight:800;line-height:.92;letter-spacing:-.03em;margin-bottom:1.5rem}
 .hero h1 .line1{display:block;color:var(--white)}
@@ -27,18 +49,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,10,9,.85);
 .hero h1 .line3{display:block;color:var(--white);opacity:.3}
 .hero-sub{font-size:16px;color:var(--muted);max-width:480px;line-height:1.7;margin-bottom:2.5rem}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{padding:14px 28px;background:var(--orange);color:#000;border-radius:8px;font-family:var(--mono);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s;letter-spacing:.04em}
+.btn-primary{
+  padding:14px 28px;background:var(--orange);color:#000;border-radius:8px;
+  font-family:var(--body);font-size:14px;font-weight:700;
+  cursor:pointer;border:none;transition:all .2s;letter-spacing:.02em
+}
 .btn-primary:hover{background:#ff8555;transform:translateY(-1px)}
-.btn-ghost{padding:14px 28px;background:transparent;color:var(--white);border-radius:8px;font-family:var(--mono);font-size:13px;cursor:pointer;border:1px solid var(--border2);transition:all .2s;letter-spacing:.04em}
+.btn-ghost{
+  padding:14px 28px;background:transparent;color:var(--white);border-radius:8px;
+  font-family:var(--body);font-size:14px;font-weight:500;
+  cursor:pointer;border:1px solid var(--border2);transition:all .2s;letter-spacing:.02em
+}
 .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
 .hero-stats{display:flex;gap:2rem;margin-top:3rem}
 .hstat-num{font-family:var(--display);font-size:32px;font-weight:800;color:var(--orange)}
-.hstat-label{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.08em}
+.hstat-label{font-size:12px;color:var(--muted);font-family:var(--body);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+ 
+/* ── SECTIONS ── */
 section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
-.section-tag{font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.section-tag{
+  font-family:var(--body);font-size:11px;font-weight:600;
+  color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:1rem;display:flex;align-items:center;gap:8px
+}
 .section-tag::before{content:'';width:20px;height:1px;background:var(--cyan)}
 .section-title{font-family:var(--display);font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:1rem}
 .section-sub{font-size:15px;color:var(--muted);max-width:500px;line-height:1.7;margin-bottom:3rem}
+ 
+/* ── PHASES (SOP) ── */
 .phases{display:flex;flex-direction:column;gap:2px}
 .phase-item{background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .2s}
 .phase-item.open{border-color:var(--orange)}
@@ -46,7 +84,11 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .phase-num{font-family:var(--display);font-size:48px;font-weight:800;line-height:1;min-width:64px;color:var(--faint);transition:color .2s}
 .phase-item.open .phase-num{color:var(--orange)}
 .phase-info{flex:1}
-.phase-badge{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:99px;margin-bottom:6px;display:inline-block}
+.phase-badge{
+  font-family:var(--body);font-size:10px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 10px;border-radius:99px;margin-bottom:6px;display:inline-block
+}
 .b-claude{background:rgba(0,212,170,.15);color:var(--cyan)}
 .b-multi{background:rgba(255,107,53,.15);color:var(--orange)}
 .b-all{background:rgba(245,200,66,.15);color:var(--yellow)}
@@ -58,34 +100,66 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .phase-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1rem;border-left:2px solid var(--orange);padding-left:1rem}
 .phase-tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
 .phase-task{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;color:var(--muted)}
-.phase-task strong{color:var(--white);display:block;margin-bottom:4px;font-size:12px;font-family:var(--mono);letter-spacing:.04em}
+.phase-task strong{color:var(--white);display:block;margin-bottom:4px;font-size:13px;font-family:var(--body);font-weight:600}
+ 
+/* ── CALCULATOR TABS ── */
 .calc-tabs{display:flex;gap:4px;margin-bottom:1.5rem;background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:4px}
-.calc-tab{flex:1;padding:10px;border-radius:8px;font-family:var(--mono);font-size:12px;cursor:pointer;text-align:center;border:none;background:transparent;color:var(--muted);transition:all .2s;letter-spacing:.04em}
+.calc-tab{
+  flex:1;padding:10px;border-radius:8px;
+  font-family:var(--body);font-size:13px;font-weight:500;
+  cursor:pointer;text-align:center;border:none;background:transparent;
+  color:var(--muted);transition:all .2s;letter-spacing:.01em
+}
 .calc-tab.active{background:var(--orange);color:#000;font-weight:700}
 .calc-panel{display:none}
 .calc-panel.active{display:block}
+ 
+/* ── CARDS ── */
 .card{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:10px}
-.card-label{font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.card-label{
+  font-family:var(--body);font-size:10px;font-weight:600;
+  color:var(--faint);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)
+}
 .params-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .param-box{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
-.param-label{font-size:10px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.param-label{
+  font-size:11px;color:var(--muted);
+  font-family:var(--body);font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;margin-bottom:6px
+}
+ 
+/* ── INPUTS ── */
 .iw{display:flex;align-items:center;background:var(--s3);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .2s}
 .iw:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,53,.12)}
 .iw input{background:transparent;border:none;outline:none;color:var(--white);font-family:var(--mono);font-size:13px;padding:8px;width:100%;text-align:right;-moz-appearance:textfield}
 .iw input::-webkit-outer-spin-button,.iw input::-webkit-inner-spin-button{-webkit-appearance:none}
-.iw-unit{font-family:var(--mono);font-size:10px;color:var(--muted);padding:0 8px;border-left:1px solid var(--border);white-space:nowrap;min-height:36px;display:flex;align-items:center}
+.iw-unit{
+  font-family:var(--body);font-size:11px;font-weight:500;
+  color:var(--muted);padding:0 8px;border-left:1px solid var(--border);
+  white-space:nowrap;min-height:36px;display:flex;align-items:center
+}
 .irow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
 .irow:last-child{border-bottom:none;padding-bottom:0}
-.irow-label{font-size:13px;color:var(--muted);flex:1}
+.irow-label{font-size:13px;color:var(--muted);flex:1;font-family:var(--body)}
 .irow .iw{width:155px;flex-shrink:0}
+ 
+/* ── SHIP TOGGLE ── */
 .ship-toggle{display:flex;gap:8px;margin-bottom:1rem}
-.ship-btn{flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-family:var(--mono);font-size:12px;cursor:pointer;text-align:center;transition:all .2s}
+.ship-btn{
+  flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);
+  background:var(--s2);color:var(--muted);
+  font-family:var(--body);font-size:13px;font-weight:500;
+  cursor:pointer;text-align:center;transition:all .2s
+}
 .ship-btn.sea{background:rgba(0,212,170,.12);border-color:rgba(0,212,170,.4);color:var(--cyan)}
 .ship-btn.air{background:rgba(255,153,0,.12);border-color:rgba(255,153,0,.4);color:#ff9900}
+ 
+/* ── RESULT CARDS ── */
 .rg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
 .rg2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:8px}
 .rcard{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px;transition:all .3s}
-.rcard-label{font-size:9px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.rcard-label{font-size:10px;color:var(--muted);font-family:var(--body);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
 .rcard-val{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--white)}
 .rcard.g{background:var(--green-d);border-color:var(--green-m)}
 .rcard.g .rcard-val{color:var(--green)}
@@ -93,12 +167,14 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .rcard.y .rcard-val{color:var(--yellow)}
 .rcard.r{background:var(--red-d);border-color:rgba(255,68,68,.3)}
 .rcard.r .rcard-val{color:var(--red)}
+ 
+/* ── VERDICT ── */
 .verdict{border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;border:1px solid transparent;transition:all .3s}
 .verdict-label{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.02em}
-.verdict-sub{font-size:12px;margin-top:3px;font-family:var(--mono)}
+.verdict-sub{font-size:12px;margin-top:3px;font-family:var(--body);font-weight:500}
 .verdict-right{text-align:right}
 .verdict-num{font-family:var(--display);font-size:32px;font-weight:800}
-.verdict-unit{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.verdict-unit{font-size:10px;color:var(--muted);font-family:var(--body);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .v-green{background:var(--green-d);border-color:var(--green-m)}
 .v-green .verdict-label,.v-green .verdict-num{color:var(--green)}
 .v-green .verdict-sub{color:rgba(0,232,122,.6)}
@@ -106,12 +182,16 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .v-yellow .verdict-label,.v-yellow .verdict-num{color:var(--yellow)}
 .v-red{background:var(--red-d);border-color:rgba(255,68,68,.3)}
 .v-red .verdict-label,.v-red .verdict-num{color:var(--red)}
+ 
+/* ── BAR ── */
 .bar-wrap{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px}
-.bar-hdr{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:8px}
+.bar-hdr{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--body);margin-bottom:8px}
 .bar-track{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1),background .3s}
 .bar-markers{display:flex;justify-content:space-between;margin-top:5px}
-.bar-mk{font-size:9px;color:var(--faint);font-family:var(--mono)}
+.bar-mk{font-size:10px;color:var(--faint);font-family:var(--body);font-weight:500}
+ 
+/* ── BREAKDOWN ROWS ── */
 .brow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
 .brow:last-child{border-bottom:none}
 .brow.total{border-top:1px solid rgba(255,107,53,.3);border-bottom:none;padding-top:10px;font-weight:600}
@@ -121,19 +201,25 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .bval.total-g{color:var(--green);font-size:15px}
 .bval.total-y{color:var(--yellow);font-size:15px}
 .bval.total-r{color:var(--red);font-size:15px}
+ 
+/* ── LOT CARDS ── */
 .lo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .lo-card{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px}
-.lo-label{font-size:9px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.lo-label{font-size:10px;color:var(--muted);font-family:var(--body);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
 .lo-val{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--white)}
 .lo-val.green{color:var(--green)}
 .lo-val.yellow{color:var(--yellow)}
 .lo-val.orange{color:var(--orange)}
+ 
+/* ── RESEARCH ── */
 .research-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
 .res-input-card{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:1.25rem}
 .metric-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
 .metric-row:last-child{border-bottom:none}
-.metric-row label{font-size:12px;color:var(--muted);flex:1;font-family:var(--mono)}
+.metric-row label{font-size:13px;color:var(--muted);flex:1;font-family:var(--body)}
 .metric-row .iw{width:130px}
+ 
+/* ── SCORE RING ── */
 .score-ring{width:120px;height:120px;position:relative;margin:0 auto 1rem}
 .score-ring svg{width:120px;height:120px;transform:rotate(-90deg)}
 .score-ring circle{fill:none;stroke-width:8}
@@ -141,42 +227,63 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .ring-fill{stroke:var(--green);stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset .6s,stroke .3s}
 .score-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .score-num{font-family:var(--display);font-size:28px;font-weight:800;color:var(--white)}
-.score-label{font-size:9px;color:var(--muted);font-family:var(--mono)}
+.score-label{font-size:10px;color:var(--muted);font-family:var(--body);font-weight:500}
+ 
+/* ── SIGNALS ── */
 .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:1rem}
 .signal{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px}
 .signal-icon{font-size:16px;margin-bottom:4px}
-.signal-label{color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.04em;display:block;margin-bottom:2px}
-.signal-val{font-weight:600}
+.signal-label{color:var(--muted);font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:.02em;display:block;margin-bottom:2px}
+.signal-val{font-weight:600;font-family:var(--mono);font-size:12px}
 .signal.pos .signal-val{color:var(--green)}
 .signal.neg .signal-val{color:var(--red)}
 .signal.neu .signal-val{color:var(--yellow)}
+ 
+/* ── SOURCING SCRIPT ── */
 .script-area{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:1rem;font-size:13px;color:var(--muted);line-height:1.8;white-space:pre-wrap;font-family:var(--mono)}
 .script-controls{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
-.script-btn{padding:8px 16px;border-radius:6px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-family:var(--mono);font-size:11px;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.script-btn{
+  padding:8px 16px;border-radius:6px;border:1px solid var(--border);
+  background:var(--s2);color:var(--muted);
+  font-family:var(--body);font-size:12px;font-weight:500;
+  cursor:pointer;transition:all .2s;letter-spacing:.02em
+}
 .script-btn:hover,.script-btn.active{background:var(--orange);color:#000;border-color:var(--orange)}
+ 
+/* ── LISTING FORM ── */
 .listing-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .lf-group{display:flex;flex-direction:column;gap:6px}
-.lf-label{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.06em}
+.lf-label{font-size:11px;color:var(--muted);font-family:var(--body);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .lf-input{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--white);font-family:var(--body);font-size:13px;outline:none;transition:border-color .2s;width:100%}
 .lf-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,53,.12)}
 .title-output{background:var(--s2);border:1px solid var(--green-m);border-radius:8px;padding:14px;font-family:var(--mono);font-size:13px;color:var(--green);line-height:1.6;margin-top:10px;word-break:break-word}
-.char-counter{font-size:11px;color:var(--muted);text-align:right;margin-top:4px;font-family:var(--mono)}
+.char-counter{font-size:11px;color:var(--muted);text-align:right;margin-top:4px;font-family:var(--body);font-weight:500}
 .char-counter.warn{color:var(--yellow)}
 .char-counter.over{color:var(--red)}
+ 
+/* ── MISC ── */
 .divider{width:100%;border:none;border-top:1px solid var(--border);margin:0}
-footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.1em}
-select{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:8px;color:var(--white);font-family:var(--mono);font-size:12px;outline:none}
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-family:var(--body);font-size:11px;font-weight:500;color:var(--faint);letter-spacing:.1em}
+select{background:var(--s2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--white);font-family:var(--body);font-size:13px;outline:none}
+ 
+/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero>*{animation:fadeUp .6s ease both}
 .hero-tag{animation-delay:.1s}
 .hero h1{animation-delay:.2s}
 .hero-sub{animation-delay:.3s}
 .hero-cta{animation-delay:.4s}
-@media(max-width:640px){nav{padding:0 1rem}.nav-links{display:none}.hero h1{font-size:clamp(40px,12vw,72px)}.params-grid,.rg3,.rg2,.lo-grid,.research-grid,.listing-form{grid-template-columns:1fr 1fr}}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  nav{padding:0 1rem}
+  .nav-links{display:none}
+  .hero h1{font-size:clamp(40px,12vw,72px)}
+  .params-grid,.rg3,.rg2,.lo-grid,.research-grid,.listing-form{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-logo">Drop<span>Kho</span>.US</div>
   <div class="nav-links">
@@ -188,7 +295,6 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     <button class="nav-link" onclick="document.getElementById('listing').scrollIntoView({behavior:'smooth'})">Listing</button>
   </div>
 </nav>
-
 <div class="hero" id="hero">
   <div class="grid-bg"></div>
   <div class="hero-tag">Malva Store · Team Drop · 2026</div>
@@ -208,9 +314,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     <div><div class="hstat-num">30%</div><div class="hstat-label">Target Margin</div></div>
   </div>
 </div>
-
 <hr class="divider">
-
 <section id="sop">
   <div class="section-tag">Workflow</div>
   <div class="section-title">5 Giai Đoạn<br>AI đã đi vào<br><span style="color:var(--orange)">chỗ nào</span></div>
@@ -298,9 +402,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     </div>
   </div>
 </section>
-
 <hr class="divider">
-
 <section id="calculator">
   <div class="section-tag">Tool</div>
   <div class="section-title">Profit <span style="color:var(--orange)">Calculator</span></div>
@@ -338,7 +440,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
       <div class="bar-wrap">
         <div class="bar-hdr"><span>Biên độ lãi</span><span id="dr-bp">0%</span></div>
         <div class="bar-track"><div class="bar-fill" id="dr-bar"></div></div>
-        <div class="bar-markers"><span class="bar-mk">0%</span><span class="bar-mk" style="color:var(--red)">10%⚠</span><span class="bar-mk" style="color:var(--yellow)">20%✓</span><span class="bar-mk" style="color:var(--green)">30%★</span><span class="bar-mk">50%</span></div>
+        <div class="bar-markers"><span class="bar-mk">0%</span><span class="bar-mk" style="color:var(--red)">10% ⚠</span><span class="bar-mk" style="color:var(--yellow)">20% ✓</span><span class="bar-mk" style="color:var(--green)">30% ★</span><span class="bar-mk">50%</span></div>
       </div>
     </div>
     <div class="card">
@@ -390,7 +492,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
       <div class="bar-wrap">
         <div class="bar-hdr"><span>Biên độ lãi</span><span id="lr-bp">0%</span></div>
         <div class="bar-track"><div class="bar-fill" id="lr-bar"></div></div>
-        <div class="bar-markers"><span class="bar-mk">0%</span><span class="bar-mk" style="color:var(--red)">10%⚠</span><span class="bar-mk" style="color:var(--yellow)">20%ĐẠT</span><span class="bar-mk" style="color:var(--green)">30%★</span><span class="bar-mk">50%</span></div>
+        <div class="bar-markers"><span class="bar-mk">0%</span><span class="bar-mk" style="color:var(--red)">10% ⚠</span><span class="bar-mk" style="color:var(--yellow)">20% ĐẠT</span><span class="bar-mk" style="color:var(--green)">30% ★</span><span class="bar-mk">50%</span></div>
       </div>
     </div>
     <div class="card">
@@ -406,9 +508,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     </div>
   </div>
 </section>
-
 <hr class="divider">
-
 <section id="research">
   <div class="section-tag">Giai Đoạn 1</div>
   <div class="section-title">Product <span style="color:var(--cyan)">Research</span></div>
@@ -431,7 +531,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
       </div>
       <div style="text-align:center;margin-bottom:1rem">
         <div style="font-family:var(--display);font-size:20px;font-weight:800" id="score-verdict">—</div>
-        <div style="font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:4px" id="score-sub">—</div>
+        <div style="font-size:12px;color:var(--muted);font-family:var(--body);margin-top:4px" id="score-sub">—</div>
       </div>
       <div class="signal-grid">
         <div class="signal pos" id="sig0"><div class="signal-icon">📈</div><span class="signal-label">Sold/tháng</span><div class="signal-val" id="sig-sold">—</div></div>
@@ -446,9 +546,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     <div style="font-size:13px;color:var(--muted);line-height:1.8" id="research-analysis">Nhập chỉ số eBay để nhận phân tích...</div>
   </div>
 </section>
-
 <hr class="divider">
-
 <section id="sourcing">
   <div class="section-tag">Giai Đoạn 2</div>
   <div class="section-title">Sourcing <span style="color:var(--orange)">Script</span></div>
@@ -470,9 +568,7 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     <div class="script-area" id="script-output">Nhập thông tin sản phẩm để generate script...</div>
   </div>
 </section>
-
 <hr class="divider">
-
 <section id="listing">
   <div class="section-tag">Giai Đoạn 4</div>
   <div class="section-title">eBay Title <span style="color:var(--green)">Generator</span></div>
@@ -498,10 +594,8 @@ select{background:var(--s2);border:1px solid var(--border);border-radius:6px;pad
     </div>
   </div>
 </section>
-
 <hr class="divider">
 <footer>MALVA STORE · DROP KHO USA · AI WORKFLOW DASHBOARD · 2026</footer>
-
 <script>
 function togglePhase(el){const o=el.classList.contains('open');document.querySelectorAll('.phase-item').forEach(p=>p.classList.remove('open'));if(!o)el.classList.add('open')}
 function switchCalc(t){document.querySelectorAll('.calc-tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='drop')||(i===1&&t==='lo')));document.getElementById('panel-drop').classList.toggle('active',t==='drop');document.getElementById('panel-lo').classList.toggle('active',t==='lo')}
@@ -557,7 +651,7 @@ function genTitle(){
   document.getElementById('title-output').textContent=title;
   const cc=document.getElementById('char-count');cc.textContent=title.length+' / 80 ký tự';cc.className='char-counter'+(title.length>80?' over':title.length>70?' warn':'');
   const variants=[[name,mat,feat,qty,use,brand],[feat,name,qty,mat,use],[qty,name,feat,mat,use,brand]].map(a=>a.filter(Boolean).join(' ').substring(0,80).toUpperCase()).filter((v,i,arr)=>v!==title&&arr.indexOf(v)===i);
-  document.getElementById('title-variants').innerHTML=variants.map((v,i)=>`<div style="background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:12px;cursor:pointer" onclick="document.getElementById('title-output').textContent=this.querySelector('.vt').textContent"><div style="font-size:9px;color:var(--faint);letter-spacing:.1em;margin-bottom:3px">VARIANT ${i+2} · ${v.length}/80</div><div class="vt" style="color:var(--white)">${v}</div></div>`).join('');
+  document.getElementById('title-variants').innerHTML=variants.map((v,i)=>`<div style="background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:12px;cursor:pointer" onclick="document.getElementById('title-output').textContent=this.querySelector('.vt').textContent"><div style="font-size:9px;color:var(--faint);letter-spacing:.1em;margin-bottom:3px;font-family:var(--body)">VARIANT ${i+2} · ${v.length}/80</div><div class="vt" style="color:var(--white)">${v}</div></div>`).join('');
 }
 calcDrop();calcLo();calcScore();genScript();
 </script>
